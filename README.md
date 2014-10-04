@@ -2,6 +2,12 @@ Collection Section View
 =======================
 SectionBackgroundLayout can provide background decoration view for each section.
 
+
+![alt tag](https://raw.githubusercontent.com/s-atif-jamil/CollectionSectionView/master/Portrait.png)
+
+![alt tag](https://raw.githubusercontent.com/s-atif-jamil/CollectionSectionView/master/Landscape.png)
+
+
 How To
 ------
 
@@ -24,5 +30,6 @@ How To
 Note
 ----
 * if layout.alternateBackgrounds = YES and sections are more than background views then new section reuse the 1st background view and next section will 2nd one and so on. Like alternate background colors.
+
 * if array contains [NSNull null] element then that section will not create any background just reflect the UICollectionView background
 
