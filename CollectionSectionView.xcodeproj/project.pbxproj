@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C043974A19CF3E18005674F0 /* SectionBackgroundLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C043974719CF3E18005674F0 /* SectionBackgroundLayout.m */; };
 		C043974B19CF3E18005674F0 /* SectionBackgroundView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C043974819CF3E18005674F0 /* SectionBackgroundView1.xib */; };
 		C043974C19CF3E18005674F0 /* SectionBackgroundView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = C043974919CF3E18005674F0 /* SectionBackgroundView2.xib */; };
 		C043975219CF404E005674F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C043975019CF404E005674F0 /* Main.storyboard */; };
@@ -19,8 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C043974619CF3E18005674F0 /* SectionBackgroundLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionBackgroundLayout.h; sourceTree = "<group>"; };
-		C043974719CF3E18005674F0 /* SectionBackgroundLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionBackgroundLayout.m; sourceTree = "<group>"; };
 		C043974819CF3E18005674F0 /* SectionBackgroundView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionBackgroundView1.xib; sourceTree = "<group>"; };
 		C043974919CF3E18005674F0 /* SectionBackgroundView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionBackgroundView2.xib; sourceTree = "<group>"; };
 		C043975119CF404E005674F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,8 +46,6 @@
 		C043974519CF3E18005674F0 /* SectionBackground */ = {
 			isa = PBXGroup;
 			children = (
-				C043974619CF3E18005674F0 /* SectionBackgroundLayout.h */,
-				C043974719CF3E18005674F0 /* SectionBackgroundLayout.m */,
 				C043974819CF3E18005674F0 /* SectionBackgroundView1.xib */,
 				C043974919CF3E18005674F0 /* SectionBackgroundView2.xib */,
 			);
@@ -173,7 +168,6 @@
 				C0DC1AE519CF3CCA00BF00CF /* CollectionViewController.m in Sources */,
 				C0DC1AE219CF3CCA00BF00CF /* AppDelegate.m in Sources */,
 				C0DC1ADF19CF3CCA00BF00CF /* main.m in Sources */,
-				C043974A19CF3E18005674F0 /* SectionBackgroundLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
