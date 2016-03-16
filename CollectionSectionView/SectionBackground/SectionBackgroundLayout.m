@@ -21,6 +21,7 @@
 {
     [super prepareLayout];
     self.itemAttributes = [NSMutableArray new];
+    id<UICollectionViewDelegateFlowLayout> delegate = (id)self.collectionView.delegate;
     
     NSInteger numberOfSection = self.collectionView.numberOfSections;
     for (int section=0; section<numberOfSection; section++)
@@ -38,20 +39,24 @@
         
         UICollectionViewLayoutAttributes *firstItem = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
         UICollectionViewLayoutAttributes *lastItem = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:lastIndex inSection:section]];
+
+        UIEdgeInsets sectionInset = self.sectionInset;
+        if ([delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)])
+            sectionInset = [delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:section];
         
         CGRect frame = CGRectUnion(firstItem.frame, lastItem.frame);
-        frame.origin.x -= self.sectionInset.left;
-        frame.origin.y -= self.sectionInset.top;
+        frame.origin.x -= sectionInset.left;
+        frame.origin.y -= sectionInset.top;
         
         if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal)
         {
-            frame.size.width += self.sectionInset.left + self.sectionInset.right;
+            frame.size.width += sectionInset.left + sectionInset.right;
             frame.size.height = self.collectionView.frame.size.height;
         }
         else
         {
             frame.size.width = self.collectionView.frame.size.width;
-            frame.size.height += self.sectionInset.top + self.sectionInset.bottom;
+            frame.size.height += sectionInset.top + sectionInset.bottom;
         }
         
         
