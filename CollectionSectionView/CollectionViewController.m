@@ -20,15 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    SectionBackgroundLayout *customFlowLayout = [[SectionBackgroundLayout alloc] init];
-//    customFlowLayout.minimumInteritemSpacing = 0.f;
-//    customFlowLayout.minimumLineSpacing = 0.f;
-//    customFlowLayout.alternateBackgrounds = YES;
-//    customFlowLayout.decorationViewOfKinds = @[@"SectionBackgroundView1", @"SectionBackgroundView2"];
-//    customFlowLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
-//    
-//    self.collectionView.collectionViewLayout = customFlowLayout;
-//    self.data = @[@(20), @(2), @(10), @(31), @(1), @(5), @(25)];
 
     SectionBackgroundLayout *layout = (id)self.collectionViewLayout;
     layout.decorationViewOfKinds = @[@"SectionBackgroundView1", @"SectionBackgroundView2", [NSNull null]];
@@ -69,9 +60,9 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    CGFloat inset = 20;
-    if (section%2 == 0)
-        inset = 40;
+    CGFloat inset = 40;
+    if (section%3 == 0)
+        inset = 20;
     
     return UIEdgeInsetsMake(inset, inset, inset, inset);
 }
