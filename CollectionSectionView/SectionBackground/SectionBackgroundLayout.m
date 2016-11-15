@@ -14,18 +14,16 @@
 
 @end
 
+
 @implementation SectionBackgroundLayout
 
-
-- (void)prepareLayout
-{
+- (void)prepareLayout {
     [super prepareLayout];
     self.itemAttributes = [NSMutableArray new];
     id<UICollectionViewDelegateFlowLayout> delegate = (id)self.collectionView.delegate;
     
     NSInteger numberOfSection = self.collectionView.numberOfSections;
-    for (int section=0; section<numberOfSection; section++)
-    {
+    for (int section=0; section<numberOfSection; section++) {
         if (!self.alternateBackgrounds && section == self.decorationViewOfKinds.count)
             break;
         
@@ -48,13 +46,11 @@
         frame.origin.x -= sectionInset.left;
         frame.origin.y -= sectionInset.top;
         
-        if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal)
-        {
+        if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
             frame.size.width += sectionInset.left + sectionInset.right;
             frame.size.height = self.collectionView.frame.size.height;
         }
-        else
-        {
+        else {
             frame.size.width = self.collectionView.frame.size.width;
             frame.size.height += sectionInset.top + sectionInset.bottom;
         }
@@ -68,11 +64,9 @@
     }
 }
 
-- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSMutableArray *attributes = [NSMutableArray arrayWithArray:[super layoutAttributesForElementsInRect:rect]];
-    for (UICollectionViewLayoutAttributes *attribute in self.itemAttributes)
-    {
+    for (UICollectionViewLayoutAttributes *attribute in self.itemAttributes) {
         if (!CGRectIntersectsRect(rect, attribute.frame))
             continue;
         
@@ -80,6 +74,15 @@
     }
     
     return attributes;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    for (UICollectionViewLayoutAttributes *attribute in self.itemAttributes) {
+        if (attribute.indexPath.section == indexPath.section)
+            return attribute;
+    }
+    
+    return [super layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:indexPath];
 }
 
 @end
