@@ -10,7 +10,8 @@
 
 @interface SectionBackgroundLayout ()
 
-@property (strong, nonatomic) NSMutableArray *itemAttributes;
+// Len: use NSMutableArray will result in crash when reload section
+@property (strong, nonatomic) NSMutableDictionary *itemAttributes;
 
 @end
 
@@ -20,7 +21,7 @@
 - (void)prepareLayout
 {
     [super prepareLayout];
-    self.itemAttributes = [NSMutableArray new];
+    self.itemAttributes = [NSMutableDictionary new];
     id<UICollectionViewDelegateFlowLayout> delegate = (id)self.collectionView.delegate;
     
     NSInteger numberOfSection = self.collectionView.numberOfSections;
@@ -63,7 +64,8 @@
         UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewOfKind withIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
         attributes.zIndex = -1;
         attributes.frame = frame;
-        [self.itemAttributes addObject:attributes];
+        // Len: replace addObject: with setObject:forKey
+        [self.itemAttributes setObject:attributes forKey:@(section)];
         [self registerNib:[UINib nibWithNibName:decorationViewOfKind bundle:[NSBundle mainBundle]] forDecorationViewOfKind:decorationViewOfKind];
     }
 }
@@ -80,6 +82,15 @@
     }
     
     return attributes;
+}
+
+// Len: NSMutableArray will result in array bound.
+- (nullable UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([elementKind isEqualToString: self.decorationViewOfKinds[indexPath.section % self.decorationViewOfKinds.count]]) {
+        return [self.itemAttributes objectForKey:@(indexPath.section)];
+    }
+    return [super layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:indexPath];
 }
 
 @end
